@@ -12,15 +12,8 @@ namespace CyberAwarenessChatBot
 
         public abstract string BestPractiseAndMitigations();
 
-        public static void GetToKnowMe() 
-        { 
-        
-            
-        }
+       
 
-        public static string InvalidInput(string Input)
-        {
-            return Input; //leaving it like this for now
-        }
+       
     }
 }
