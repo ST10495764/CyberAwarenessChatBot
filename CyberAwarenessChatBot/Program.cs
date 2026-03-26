@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Testing continuous integration");
+            Console.WriteLine("Test 2:Testing continuous integration");
         }
     }
 }
