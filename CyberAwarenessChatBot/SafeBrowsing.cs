@@ -8,19 +8,19 @@ namespace CyberAwarenessChatBot
     {
         public SafeBrowsing() { }
 
-        public override string Definition()
+        public override void Definition()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("safe browsing definition");
         }
 
-        public override string Identify()
+        public override void Identify()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("identifying if you are safe browsing");
         }
 
-        public override string BestPractiseAndMitigations()
+        public override void BestPracticeAndMitigations()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("best practice for safe browsing");
         }
     }
 }

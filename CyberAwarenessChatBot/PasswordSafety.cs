@@ -8,19 +8,19 @@ namespace CyberAwarenessChatBot
     {
         public PasswordSafety() { }
 
-        public override string Definition()
+        public override void Definition()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Password safety definition");
         }
 
-        public override string Identify()
+        public override void Identify()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("identifying Password safety");
         }
 
-        public override string BestPractiseAndMitigations()
+        public override void BestPracticeAndMitigations()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("best practice for Password safety");
         }
     }
 }

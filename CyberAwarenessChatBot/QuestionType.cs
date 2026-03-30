@@ -7,13 +7,14 @@ namespace CyberAwarenessChatBot
 {
     internal abstract class QuestionType
     {
-        public abstract string Definition();
-        public abstract string Identify();
+        public abstract void Definition();
+        public abstract void Identify();
 
-        public abstract string BestPractiseAndMitigations();
+        public abstract void BestPracticeAndMitigations();
 
-       
 
-       
+
+
+
     }
 }

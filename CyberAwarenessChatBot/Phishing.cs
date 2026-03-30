@@ -8,19 +8,19 @@ namespace CyberAwarenessChatBot
     {
         public Phishing() { }
 
-        public override string Definition()
+        public override void Definition()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Phishing definition");
         }
 
-        public override string Identify()
+        public override void Identify()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("how you identify phishing");
         }
 
-        public override string BestPractiseAndMitigations()
+        public override void BestPracticeAndMitigations()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("how you fight against Phishing");
         }
     }
 }
