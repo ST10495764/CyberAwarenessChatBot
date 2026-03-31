@@ -211,7 +211,7 @@ I'll explain definitions, how to identify threats,and best practices.[PRESS ENTE
                 }
                 else if (topic == "exit")
                 {
-
+                    break;
                 }
                 else
                 {
