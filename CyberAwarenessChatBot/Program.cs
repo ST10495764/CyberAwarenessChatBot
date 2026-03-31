@@ -139,20 +139,20 @@ namespace CyberAwarenessChatBot
 
                 if (userInput == "how are you")
                 {
-                    TypingInput(@"I am doing okay, thank you for asking.");
+                    TypingInput(@"I am doing okay, thank you for asking.[PRESS ENTER TO CONTINUE CHAT]");
 
                 }
                 else if (userInput == "what is your purpose")
                 {
                     TypingInput(@"
 My purpose is to help you learn about security concepts.
-I cover topics like threats and how you can protect yourself.");
+I cover topics like threats and how you can protect yourself.[PRESS ENTER TO CONTINUE CHAT]");
                 }
                 else if (userInput == "what can i ask you about")
                 {
                     TypingInput(@"
 You can ask about phishing, safe browsing, and password safety.
-I'll explain definitions, how to identify threats,and best practices.");
+I'll explain definitions, how to identify threats,and best practices.[PRESS ENTER TO CONTINUE CHAT]");
                 }
                 else if (userInput == "yes")
                 {
@@ -164,7 +164,7 @@ I'll explain definitions, how to identify threats,and best practices.");
                 }
                 else
                 {
-                    TypingInput("I didn't understand that. Please rephrase.");
+                    TypingInput("I didn't understand that. Please rephrase.[PRESS ENTER]");
                 }
 
 
