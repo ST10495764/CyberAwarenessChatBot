@@ -2,196 +2,193 @@
 using System;
 using System.Reflection;
 using System.Text;
+using System;
+using System.Threading;
 
 namespace CyberAwarenessChatBot
 {
     internal class Program
     {
-        static void DrawBox(int x, int y, int width, int height)
+        static void DrawBox(int x, int y, int width, int height)  //x and y are for the cursor position and width and height are for the console boarder parameters 
         {
-                // Top border
-                Console.SetCursorPosition(x, y);
-                Console.Write("+" + new string('-', width - 2) + "+");
+            // Top border
+            Console.SetCursorPosition(x, y);
+            Console.Write("+" + new string('=', width - 1) + "+"); // the string method takes in a char and count
 
-                // Side borders
-                for (int i = 1; i < height - 1; i++)
-                {
-                    Console.SetCursorPosition(x, y + i);
-                    Console.Write("|");
+            // Side borders
+            for (int i = 1; i < height - 1; i++)
+            {
+                Console.SetCursorPosition(x, y + i);
+                Console.Write("|");                              //writing on far left
 
-                    Console.SetCursorPosition(x + width - 1, y + i);
-                    Console.Write("|");
-                }
-
-                // Bottom border
-                Console.SetCursorPosition(x, y + height - 1);
-                Console.Write("+" + new string('-', width - 2) + "+");
+                Console.SetCursorPosition(x + width - 1, y + i);
+                Console.Write("|");                             //writing on far right
             }
+
+            // Bottom border
+            Console.SetCursorPosition(x, y + height - 1);
+            Console.Write("+" + new string('=', width - 2) + "+");
+        }
+
+        public static string TypingInput(string prompt, int delay = 30)
+        {
+            foreach (char c in prompt)
+            {
+                Console.Write(c);
+                Thread.Sleep(delay);
+            }
+            return Console.ReadLine();
+
+        }
         
+            
+        
+
 
         public static void Greetings()
         {
-            DrawBox(0,0,50,10);
-            int startX = 2;
-            int startY = 2;
-
-            Console.SetCursorPosition(startX, startY);
-            var UserName = new StringBuilder();
-            Console.WriteLine("What is your name?:");
-            string UserName = Console.ReadLine();
-            Console.WriteLine($@"
-========================================================================================================================
-
-                            WELCOME TO THE CYBERSECURITY AWARENESS CHATBOT {UserName}");
+          
+               
         }
 
-        //console boarders 
-       
 
-        
+
+        //console boarders 
+
+
+
 
         public static void GetToKnowMe()
         {
+            int x = 2;
+            int y = 2;
+            int width = 95;
+            int height = 25;
             while (true)
             {
-                Console.Write("Type here: ");
-                string UserInput = Console.ReadLine().ToLower();
-                if (UserInput == "how are you")
+                Console.Title = "GET TO KNOW ME";
+                //DrawBox(x, y, width, height);
+                //Console.SetCursorPosition(x, y);
+
+
+                string userInput1 = TypingInput("Ask any question about myself or type yes to start learning: ");
+
+                //Console.ReadKey();
+
+               string userInput = userInput1.ToLower();
+
+
+
+                if (userInput == "how are you")
                 {
-                    Console.WriteLine(@"
-            I am doing okay, thank you for asking.Type yes to start learning or 
-            ask me more about myself");
+                    TypingInput(@"I am doing okay, thank you for asking.");
+
                 }
-                else if (UserInput == "what is your purpose")
+                else if (userInput == "what is your purpose")
                 {
-                        Console.WriteLine(@$"
-            My Purpose is to help you learn about security concepts
-            covering topics like threats and how you can protect yourself against 
-            such threat in this new age of technology. Type yes to start learning.");
+                    TypingInput(@"
+My purpose is to help you learn about security concepts.
+I cover topics like threats and how you can protect yourself.");
                 }
-                else if (UserInput == "what can i ask you about")
+                else if (userInput == "what can i ask you about")
                 {
-                    Console.WriteLine(@$"
-            You can ask me about Phishing,safe browsing and password safety. I will tell you the definition,
-            how to identify these threats and what is the best practice for each.
-            If you've asked me about my purpose, then that's pretty much there is to know 
-            about me. Do you want to start learning?");
-            }
-                else if(UserInput == "yes")
+                    TypingInput(@"
+You can ask about phishing, safe browsing, and password safety.
+I'll explain definitions, how to identify threats,and best practices.");
+                }
+                else if (userInput == "yes")
                 {
-                    break;
+                    PickTopic();
+
+
+
+
                 }
                 else
                 {
-                    Console.WriteLine($"I didn't quite understand that can you please rephrase");
+                    TypingInput("I didn't understand that. Please rephrase.");
                 }
-            }
 
+
+            }
         }
+
+
+
 
         public static void PickTopic()
         {
-            //creating object of each topic class
 
-            Phishing phishing = new Phishing();
-            PasswordSafety passwordSafety = new PasswordSafety();
-            SafeBrowsing safeBrowsing = new SafeBrowsing();
-
-            Console.WriteLine("Do you want to learn about Phishing, Safe Browsing, or Password safety? ");
-
-            Console.Write("Type here: ");
-
-            //reading what the user wants to learn about
-            string topic = Console.ReadLine().ToLower(); //making input lowercase
-            Console.WriteLine("");
-
-            //presenting different content depending on what the user chooses 
-            if (topic == "phishing")
+            while (true)
             {
-                phishing.Definition();
-                Console.WriteLine("");
-                phishing.Identify();
-                Console.WriteLine("");
+                Console.Title = "LEARN ABOUT CYBER SECURITY";
 
-                phishing.BestPracticeAndMitigations();
-            }
-            else if (topic == "password safety")
-            {
-                passwordSafety.Definition();
-                Console.WriteLine("");
-                passwordSafety.Identify();
-                Console.WriteLine("");
-                passwordSafety.BestPracticeAndMitigations();
-            }
-            else if(topic == "safe browsing")
-            {
-                safeBrowsing.Definition();
-                Console.WriteLine("");
-                safeBrowsing.Identify();
-                Console.WriteLine("");
-                safeBrowsing.BestPracticeAndMitigations();
-                Console.WriteLine("");
+               string topic1 = TypingInput("Choose a topic to learn about Phishing, safe browsing or password safety: ");
+
+               string topic = topic1.ToLower();
+
+
+                Phishing phishing = new Phishing();
+                PasswordSafety passwordSafety = new PasswordSafety();
+                SafeBrowsing safeBrowsing = new SafeBrowsing();
+
+
+
+
+
+
+
+
+
+
+                if (topic == "phishing")
+                {
+                    TypingInput(phishing.Definition());
+                    TypingInput(phishing.Identify());
+                    TypingInput(phishing.BestPracticeAndMitigations());
+                    Console.Clear();                                          //CLEARS CONSOLE
+                }
+                else if (topic == "password safety")
+                {
+                    TypingInput(passwordSafety.Definition());
+                    TypingInput(passwordSafety.Identify());
+                    TypingInput(passwordSafety.BestPracticeAndMitigations());
+                    Console.Clear();
+                }
+                else if (topic == "safe browsing")
+                {
+                    TypingInput(safeBrowsing.Definition());
+                    TypingInput(safeBrowsing.Identify());
+                    TypingInput(safeBrowsing.BestPracticeAndMitigations());
+                    Console.Clear();
+                }
+                else if (topic == "exit")
+                {
+
+                }
+                else
+                {
+                }
+
             }
         }
-       
+                static void Main(string[] args)
+                {
 
-        static void Main(string[] args)
-        {
-            //int width = 70;
-            //int height = 20;
+            //string name = TypingInput("Hello there! What's your name? ");
+            //TypingInput($"\nNice to meet you, {name}!");
 
-            ////DrawBox(0, 0, width, height);
+            
+           GetToKnowMe();
+            Console.ReadKey();
 
-            //int startX = 2;
-            //int startY = 2;
 
-            //Console.SetCursorPosition(startX, startY);
 
-            //var input = new StringBuilder();
-            //int cursorX = startX;
+                }
 
-            //while (true)
-            //{
-            //    var key = Console.ReadKey(true);
 
-            //    if (key.Key == ConsoleKey.Enter)
-            //        break;
 
-            //    if (key.Key == ConsoleKey.Backspace && input.Length > 0)
-            //    {
-            //        input.Remove(input.Length - 1, 1);
-            //        cursorX--;
-
-            //        Console.SetCursorPosition(cursorX, startY);
-            //        Console.Write(" ");
-            //        Console.SetCursorPosition(cursorX, startY);
-            //    }
-            //    else if (!char.IsControl(key.KeyChar))
-            //    {
-            //        input.Append(key.KeyChar);
-            //        Console.SetCursorPosition(cursorX, startY);
-            //        Console.Write(key.KeyChar);
-            //        cursorX++;
-            //    }
-            //}
-
-            //// Output inside the box
-            //Console.SetCursorPosition(2, 4);
-            //Console.Write("You typed: " + input.ToString());
-
-            //Console.SetCursorPosition(0, height + 1);
-            //Console.ReadKey();
-
-            Greetings();
-
+            }
         }
-
-       
-        //CreateInteractiveBorderedArea(30, 30);
-       
-        //GetToKnowMe();
-        //PickTopic();
-
-    }
-    }
+    
 
