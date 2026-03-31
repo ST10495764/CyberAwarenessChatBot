@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Text;
 using System;
 using System.Threading;
+using System.Media;
+using NAudio.Wave;
 
 namespace CyberAwarenessChatBot
 {
@@ -30,6 +32,7 @@ namespace CyberAwarenessChatBot
             Console.Write("+" + new string('=', width - 2) + "+");
         }
 
+        //gives a typing feel when the chatbot asks and gives responses
         public static string TypingInput(string prompt, int delay = 30)
         {
             foreach (char c in prompt)
@@ -40,16 +43,43 @@ namespace CyberAwarenessChatBot
             return Console.ReadLine();
 
         }
-        
-            
-        
 
 
+        //audio method using NAudio
+        public static void PlayWelcomeVoice()
+        {
+            try
+            {
+                using (var audioFile = new AudioFileReader("Recording 2.wav"))
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+
+
+                    // Keep the sound playing until it finishes
+                    while (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(100);   // Check every 100ms iif it is still playing
+                    }
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error playing voice: " + ex.Message);
+            }
+        }
+
+        //greeting method to welcome user and get user name
         public static void Greetings()
         {
-           
+               
+
+
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;   // Change color if you want
+                Console.ForegroundColor = ConsoleColor.Cyan;   
                 
                 //PASTED FROM ASCII ART
                 Console.WriteLine(@"
@@ -69,7 +99,12 @@ namespace CyberAwarenessChatBot
                                             X         XXX    XX     XXX                 x
                                             X          X                                x
                                             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                String UserName = TypingInput("Hey there what is your name?(PRESS ENTER AFTER TYPING YOUR NAME): ");
+
+
+
+            PlayWelcomeVoice();
+
+            String UserName = TypingInput("Hey there what is your name?(PRESS ENTER AFTER TYPING YOUR NAME): ");
 
             TypingInput($"Welcome {UserName} Press enter to continue chat");
             Console.Clear();
@@ -78,11 +113,6 @@ namespace CyberAwarenessChatBot
 
 
             }
-
-
-
-        //console boarders 
-
 
 
 
