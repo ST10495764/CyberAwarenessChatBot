@@ -47,9 +47,37 @@ namespace CyberAwarenessChatBot
 
         public static void Greetings()
         {
-          
-               
-        }
+           
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;   // Change color if you want
+                
+                //PASTED FROM ASCII ART
+                Console.WriteLine(@"
+                                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                            X                X X X X X                  X
+                                            X                XXXXXXXXXX                 X
+                                            X          X    XX X   X  XX                X
+                                            X         XXX   XX   X    XX                X
+                                            X        XXXXX   X XXXXX  X    XXX          X
+                                            X       XXXXXXX  XXXXXXXXXX    XXX          X
+                                            X      XXXXXXXXX     XX       XX            X
+                                            X     XXXXXXXXXXXXXXXXXXXXXXXXX             X
+                                            X     XXXXXXXXXXX    XX     XX              X
+                                            X      XXXXXXXXX     XX    XX               X
+                                            X       XXXXXXX     XXXX                    X
+                                            X        XXXXX   XXXX  XX                   X
+                                            X         XXX    XX     XXX                 x
+                                            X          X                                x
+                                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                String UserName = TypingInput("Hey there what is your name?(PRESS ENTER AFTER TYPING YOUR NAME): ");
+
+            TypingInput($"Welcome {UserName} Press enter to continue chat");
+            Console.Clear();
+            GetToKnowMe();
+
+
+
+            }
 
 
 
@@ -114,8 +142,6 @@ I'll explain definitions, how to identify threats,and best practices.");
         }
 
 
-
-
         public static void PickTopic()
         {
 
@@ -127,19 +153,10 @@ I'll explain definitions, how to identify threats,and best practices.");
 
                string topic = topic1.ToLower();
 
-
+                //OBJECTS OF THE CLASSES
                 Phishing phishing = new Phishing();
                 PasswordSafety passwordSafety = new PasswordSafety();
                 SafeBrowsing safeBrowsing = new SafeBrowsing();
-
-
-
-
-
-
-
-
-
 
                 if (topic == "phishing")
                 {
@@ -168,19 +185,16 @@ I'll explain definitions, how to identify threats,and best practices.");
                 }
                 else
                 {
+                    TypingInput("I didn't quite understand, can you please rephrase");
                 }
 
             }
         }
                 static void Main(string[] args)
                 {
-
-            //string name = TypingInput("Hello there! What's your name? ");
-            //TypingInput($"\nNice to meet you, {name}!");
-
-            
-           GetToKnowMe();
-            Console.ReadKey();
+                   Greetings();
+                   
+                   Console.ReadKey();
 
 
 
